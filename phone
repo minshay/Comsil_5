@@ -1,0 +1,19 @@
+
+
+if [ $# -eq 0 ]
+then
+        echo Useage: "phone searchfor [...searchfor]"
+        echo "(You didn't tell me what you want to search for.)"
+else
+        searchstring="("
+        for i in $@
+        do
+                searchstring+="${i}|"
+        done
+        searchstring="${searchstring:0:-1})"
+        #echo ${searchstring}
+        egrep -i ${searchstring} $HOME/mydata.txt | awk -f display.awk
+        #awk -f display.awk mydata.txt
+        
+fi
+
